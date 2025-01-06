@@ -1,40 +1,41 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flux Media Portfolio</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flux Media</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <!-- Section 1: Fullscreen video -->
-    <section>
-      <video class="video-16-9 animate" src="compilated.mp4" autoplay muted loop></video>
-    </section>
-
-    <!-- Section 2: 1280x720 image -->
-    <section>
-      <img class="image-1280-720 animate" src="Flex Media.jpg" alt="Portfolio Image">
-    </section>
-
-    <!-- Section 3: Another 16:9 video -->
-    <section>
-      <video class="video-16-9 animate" src="video2.mp4" autoplay muted loop></video>
-    </section>
-
-    <!-- Section 4: 4 x 9:16 videos side by side -->
-    <section>
-      <div class="vertical-grid animate">
-        <video class="video-9-16" src="video3.mp4" autoplay muted loop></video>
-        <video class="video-9-16" src="video4.mp4" autoplay muted loop></video>
-        <video class="video-9-16" src="video5.mp4" autoplay muted loop></video>
-        <video class="video-9-16" src="video6.mp4" autoplay muted loop></video>
-      </div>
-    </section>
-  </div>
-
-  <script src="script.js"></script>
+    <div class="container">
+        <div class="video-section video-top">
+            <video autoplay muted loop>
+                <source src="your-video-top.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="image-section">
+            <img src="your-image.jpg" alt="Portfolio Image">
+        </div>
+        <div class="video-section video-middle">
+            <video autoplay muted loop>
+                <source src="your-video-middle.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="video-grid">
+            <video autoplay muted loop class="video-small">
+                <source src="your-video1.mp4" type="video/mp4">
+            </video>
+            <video autoplay muted loop class="video-small">
+                <source src="your-video2.mp4" type="video/mp4">
+            </video>
+            <video autoplay muted loop class="video-small">
+                <source src="your-video3.mp4" type="video/mp4">
+            </video>
+            <video autoplay muted loop class="video-small">
+                <source src="your-video4.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
