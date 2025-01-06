@@ -3,6 +3,10 @@ body {
   margin: 0;
   background-color: #000;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .container {
@@ -24,7 +28,9 @@ section {
 
 /* Video Styles */
 .video-16-9 {
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
   height: auto;
   aspect-ratio: 16 / 9;
   border-radius: 12px;
@@ -34,8 +40,10 @@ section {
 
 /* Image Styles */
 .image-1280-720 {
+  max-width: 100%;
+  max-height: 100%;
   width: 1280px;
-  height: 720px;
+  height: auto;
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
@@ -51,7 +59,9 @@ section {
 }
 
 .video-9-16 {
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
   height: auto;
   aspect-ratio: 9 / 16;
   border-radius: 12px;
