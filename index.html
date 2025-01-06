@@ -8,28 +8,28 @@
 </head>
 <body>
   <div class="container">
-    <!-- Section 1: Fullscreen video -->
-    <section>
-      <video src="compilated.mp4" autoplay muted loop class="animate"></video>
+    <!-- Section 1: Fullscreen video (16:9) -->
+    <section class="fullscreen-section">
+      <video src="video1.mp4" autoplay muted loop class="video-16-9 animate"></video>
     </section>
 
-    <!-- Section 2: 1280x720 image -->
-    <section>
-      <img src="Flex Media.jpg" alt="Portfolio Image" class="animate">
+    <!-- Section 2: Image (1280x720 px) -->
+    <section class="image-section">
+      <img src="image1.jpg" alt="Portfolio Image" class="image-1280-720 animate">
     </section>
 
-    <!-- Section 3: Another 16:9 video -->
-    <section>
-      <video src="compilated.mp4" autoplay muted loop class="animate"></video>
+    <!-- Section 3: Another fullscreen video (16:9) -->
+    <section class="fullscreen-section">
+      <video src="video2.mp4" autoplay muted loop class="video-16-9 animate"></video>
     </section>
 
-    <!-- Section 4: 4 x 9:16 videos side by side -->
-    <section>
+    <!-- Section 4: Four 9:16 videos side by side -->
+    <section class="vertical-grid-section">
       <div class="vertical-grid animate">
-        <video src="video3.mp4" autoplay muted loop></video>
-        <video src="video4.mp4" autoplay muted loop></video>
-        <video src="video5.mp4" autoplay muted loop></video>
-        <video src="video6.mp4" autoplay muted loop></video>
+        <video src="video3.mp4" autoplay muted loop class="video-9-16"></video>
+        <video src="video4.mp4" autoplay muted loop class="video-9-16"></video>
+        <video src="video5.mp4" autoplay muted loop class="video-9-16"></video>
+        <video src="video6.mp4" autoplay muted loop class="video-9-16"></video>
       </div>
     </section>
   </div>
