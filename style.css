@@ -1,98 +1,104 @@
-/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  margin: 0;
-  background-color: #000;
-  overflow: hidden; /* Prevent horizontal scroll */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .container {
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
-  height: 100vh;
-  scroll-behavior: smooth;
+    width: 100%;
+    max-width: 1200px; /* Limit the max width for larger screens */
+    overflow: hidden;
 }
 
-/* Section Styles */
-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Full viewport height */
-  scroll-snap-align: start;
-  position: relative;
+.video-section {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    animation: fadeIn 1s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Video Styles - Ensures Fullscreen Responsiveness */
-.video-16-9 {
-  width: 100%; /* Scale the video to fit the screen width */
-  height: 100%; /* Scale the video to fit the screen height */
-  object-fit: contain; /* Maintain aspect ratio and fit fully inside the viewport */
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+.video-section video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-/* Image Styles */
-.image-1280-720 {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+.image-section {
+    width: 100%;
+    height: 720px; /* 720px height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 1s ease-in-out;
 }
 
-/* Vertical Grid Styles */
-.vertical-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  padding: 20px;
+.image-section img {
+    width: 100%;
+    height: auto;
+    max-width: 1280px; /* 1280px width */
 }
 
-.video-9-16 {
-  width: 100%;
-  max-height: calc(100vh - 40px); /* Ensures video doesn't overflow vertically */
-  aspect-ratio: 9 / 16;
-  object-fit: contain;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+.video-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    animation: fadeIn 1s ease-in-out;
+    margin: 20px 0; /* Add some margin for spacing */
 }
 
-/* Hover Effects */
-video:hover, img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 20px 50px rgba(255, 255, 255, 0.3);
+.video-small {
+    width: 100%; /* Default to full width */
+    max-width: 300px; /* Limit max width for small videos */
+    height: auto;
+    padding-bottom: 177.78%; /* 9:16 Aspect Ratio */
+    position: relative;
+    margin: 10px; /* Add margin for spacing */
 }
 
-/* Animation Styles */
-.animate {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+.video-small video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.animate.visible {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .video-small {
+        max-width: 45%; /* Two videos side by side on smaller screens */
+    }
 }
 
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.6);
+@media (max-width: 480px) {
+    .video-small {
+        max-width: 90%; /* One video per row on very small screens */
+    }
 }
