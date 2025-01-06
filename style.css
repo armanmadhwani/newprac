@@ -2,11 +2,10 @@
 body {
   margin: 0;
   background-color: #000;
-  overflow-x: hidden;
+  overflow: hidden; /* Prevent horizontal scroll */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 .container {
@@ -26,13 +25,11 @@ section {
   position: relative;
 }
 
-/* Video Styles */
+/* Video Styles - Ensure Full Responsiveness */
 .video-16-9 {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures video fully fits the container */
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
   transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
@@ -42,7 +39,7 @@ section {
 .image-1280-720 {
   max-width: 100%;
   max-height: 100%;
-  width: 1280px;
+  width: auto;
   height: auto;
   object-fit: cover;
   border-radius: 12px;
@@ -59,11 +56,10 @@ section {
 }
 
 .video-9-16 {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
+  width: 100%;
+  max-height: calc(100vh - 40px); /* Ensures video doesn't overflow vertically */
   aspect-ratio: 9 / 16;
+  object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
   transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
