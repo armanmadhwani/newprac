@@ -1,32 +1,8 @@
+/* General Styles */
 body {
   margin: 0;
-  background: #000;
+  background-color: #000;
   overflow-x: hidden;
-  font-family: 'Poppins', sans-serif;
-  color: #fff;
-}
-
-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  scroll-snap-align: start;
-  position: relative;
-}
-
-video, img {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: cover;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-  border-radius: 12px;
-  transition: transform 0.5s, box-shadow 0.5s;
-}
-
-video:hover, img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 20px 50px rgba(255, 255, 255, 0.3);
 }
 
 .container {
@@ -36,17 +12,37 @@ video:hover, img:hover {
   scroll-behavior: smooth;
 }
 
-.animate {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 1s, transform 1s;
+/* Section Styles */
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
 }
 
-.animate.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* Video Styles */
+.video-16-9 {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
 
+/* Image Styles */
+.image-1280-720 {
+  width: 1280px;
+  height: 720px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+/* Vertical Grid Styles */
 .vertical-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -54,14 +50,34 @@ video:hover, img:hover {
   padding: 20px;
 }
 
-.vertical-grid video {
+.video-9-16 {
   width: 100%;
   height: auto;
-  aspect-ratio: 9/16;
+  aspect-ratio: 9 / 16;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
 
+/* Hover Effects */
+video:hover, img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 50px rgba(255, 255, 255, 0.3);
+}
+
+/* Animation Styles */
+.animate {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
