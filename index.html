@@ -10,7 +10,7 @@
       background-color: #000;
       overflow-x: hidden;
       font-family: Arial, sans-serif;
-      text-align: center; /* Added text-align: center for body */
+      text-align: center;
     }
 
     .section {
@@ -20,7 +20,7 @@
       height: 100vh;
       scroll-snap-align: center;
       position: relative;
-      margin: 0 auto; /* Added margin: 0 auto for centering sections */
+      margin: 0 auto;
     }
 
     .video-container, .image-container {
@@ -49,13 +49,20 @@
       aspect-ratio: 9 / 16;
       overflow: hidden;
       border-radius: 10px;
-      text-align: center; /* Added text-align: center for grid-item */
+      text-align: center;
     }
 
     .grid-item video {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 50px; /* Adjust logo size as needed */
     }
 
     /* Scroll animations */
@@ -68,6 +75,14 @@
     .fade-in.active {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* Book Meeting Section */
+    .book-meeting {
+      background-color: #222;
+      color: #fff;
+      padding: 50px 0;
+      text-align: center;
     }
 
     /* Responsive Design */
@@ -86,8 +101,10 @@
 </head>
 <body>
 
+  <img src="logo.png" alt="Flux Media Logo" class="logo"> 
+
   <section class="section video-container fade-in">
-    <video src="compilated.mp4" autoplay muted loop playsinline></video>
+    <video src="intro1.mp4" autoplay muted loop playsinline></video>
   </section>
 
   <section class="section image-container fade-in">
@@ -103,6 +120,12 @@
     <div class="grid-item"><video src="your-video-2.mp4" autoplay muted loop playsinline></video></div>
     <div class="grid-item"><video src="your-video-3.mp4" autoplay muted loop playsinline></video></div>
     <div class="grid-item"><video src="your-video-4.mp4" autoplay muted loop playsinline></video></div>
+  </section>
+
+  <section class="book-meeting">
+    <h2>Book a Meeting</h2>
+    <p>Let's discuss your project and bring your vision to life.</p>
+    <button>Contact Us</button> 
   </section>
 
   <script>
