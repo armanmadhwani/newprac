@@ -1,41 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flux Media</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flux Media</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      overflow-x: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    .section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      scroll-snap-align: center;
+      position: relative;
+    }
+
+    .video-container, .image-container {
+      width: 80%;
+      max-width: 1280px;
+      height: auto;
+    }
+
+    .video-container video,
+    .image-container img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .grid-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 0 20px;
+    }
+
+    .grid-item {
+      width: calc(25% - 15px);
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .grid-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Scroll animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1.2s ease, transform 1.2s ease;
+    }
+
+    .fade-in.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .grid-item {
+        width: calc(50% - 15px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .grid-item {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="video-section video-top">
-            <video autoplay muted loop>
-                <source src="compilated.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="image-section">
-            <img src="Flex Media.png" alt="Portfolio Image">
-        </div>
-        <div class="video-section video-middle">
-            <video autoplay muted loop>
-                <source src="compilated.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="video-grid">
-            <video autoplay muted loop class="video-small">
-                <source src="your-video1.mp4" type="video/mp4">
-            </video>
-            <video autoplay muted loop class="video-small">
-                <source src="your-video2.mp4" type="video/mp4">
-            </video>
-            <video autoplay muted loop class="video-small">
-                <source src="your-video3.mp4" type="video/mp4">
-            </video>
-            <video autoplay muted loop class="video-small">
-                <source src="your-video4.mp4" type="video/mp4">
-            </video>
-        </div>
-    </div>
-    <script src="script.js"></script>
+
+  <!-- Fullscreen Video Section -->
+  <section class="section video-container fade-in">
+    <video src="your-4k-video.mp4" autoplay muted loop playsinline></video>
+  </section>
+
+  <!-- Image Section -->
+  <section class="section image-container fade-in">
+    <img src="your-image-1280x720.jpg" alt="Portfolio Image">
+  </section>
+
+  <!-- 16:9 Video Section -->
+  <section class="section video-container fade-in">
+    <video src="your-16x9-video.mp4" autoplay muted loop playsinline></video>
+  </section>
+
+  <!-- 9:16 Videos Grid Section -->
+  <section class="section grid-container fade-in">
+    <div class="grid-item"><video src="your-video-1.mp4" autoplay muted loop playsinline></video></div>
+    <div class="grid-item"><video src="your-video-2.mp4" autoplay muted loop playsinline></video></div>
+    <div class="grid-item"><video src="your-video-3.mp4" autoplay muted loop playsinline></video></div>
+    <div class="grid-item"><video src="your-video-4.mp4" autoplay muted loop playsinline></video></div>
+  </section>
+
+  <script>
+    // Intersection Observer for Animations
+    const sections = document.querySelectorAll('.fade-in');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
 </body>
 </html>
