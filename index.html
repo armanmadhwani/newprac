@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flux Media Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Section 1: Fullscreen video -->
+    <section>
+      <video src="video1.mp4" autoplay muted loop class="animate"></video>
+    </section>
+
+    <!-- Section 2: 1280x720 image -->
+    <section>
+      <img src="image1.jpg" alt="Portfolio Image" class="animate">
+    </section>
+
+    <!-- Section 3: Another 16:9 video -->
+    <section>
+      <video src="video2.mp4" autoplay muted loop class="animate"></video>
+    </section>
+
+    <!-- Section 4: 4 x 9:16 videos side by side -->
+    <section>
+      <div class="vertical-grid animate">
+        <video src="video3.mp4" autoplay muted loop></video>
+        <video src="video4.mp4" autoplay muted loop></video>
+        <video src="video5.mp4" autoplay muted loop></video>
+        <video src="video6.mp4" autoplay muted loop></video>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
