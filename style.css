@@ -20,16 +20,16 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100vh; /* Full viewport height */
   scroll-snap-align: start;
   position: relative;
 }
 
-/* Video Styles - Ensure Full Responsiveness */
+/* Video Styles - Ensures Fullscreen Responsiveness */
 .video-16-9 {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures video fully fits the container */
+  width: 100%; /* Scale the video to fit the screen width */
+  height: 100%; /* Scale the video to fit the screen height */
+  object-fit: contain; /* Maintain aspect ratio and fit fully inside the viewport */
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
   transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
@@ -41,7 +41,7 @@ section {
   max-height: 100%;
   width: auto;
   height: auto;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
   transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
@@ -59,7 +59,7 @@ section {
   width: 100%;
   max-height: calc(100vh - 40px); /* Ensures video doesn't overflow vertically */
   aspect-ratio: 9 / 16;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
   transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
