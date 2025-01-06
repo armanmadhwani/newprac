@@ -10,6 +10,7 @@
       background-color: #000;
       overflow-x: hidden;
       font-family: Arial, sans-serif;
+      text-align: center; /* Added text-align: center for body */
     }
 
     .section {
@@ -19,6 +20,7 @@
       height: 100vh;
       scroll-snap-align: center;
       position: relative;
+      margin: 0 auto; /* Added margin: 0 auto for centering sections */
     }
 
     .video-container, .image-container {
@@ -47,6 +49,7 @@
       aspect-ratio: 9 / 16;
       overflow: hidden;
       border-radius: 10px;
+      text-align: center; /* Added text-align: center for grid-item */
     }
 
     .grid-item video {
@@ -83,22 +86,18 @@
 </head>
 <body>
 
-  <!-- Fullscreen Video Section -->
   <section class="section video-container fade-in">
-    <video src="compilated.mp4" autoplay muted loop playsinline></video>
+    <video src="your-4k-video.mp4" autoplay muted loop playsinline></video>
   </section>
 
-  <!-- Image Section -->
   <section class="section image-container fade-in">
-    <img src="Flex Media.jpg" alt="Portfolio Image">
+    <img src="your-image-1280x720.jpg" alt="Portfolio Image">
   </section>
 
-  <!-- 16:9 Video Section -->
   <section class="section video-container fade-in">
-    <video src="compilated.mp4" autoplay muted loop playsinline></video>
+    <video src="your-16x9-video.mp4" autoplay muted loop playsinline></video>
   </section>
 
-  <!-- 9:16 Videos Grid Section -->
   <section class="section grid-container fade-in">
     <div class="grid-item"><video src="your-video-1.mp4" autoplay muted loop playsinline></video></div>
     <div class="grid-item"><video src="your-video-2.mp4" autoplay muted loop playsinline></video></div>
