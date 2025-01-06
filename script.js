@@ -1,4 +1,4 @@
-// Intersection Observer for animations
+// Intersection Observer for Scroll Animations
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
@@ -9,7 +9,7 @@ const observer = new IntersectionObserver((entries) => {
   });
 });
 
-// Observe all elements with the animate class
-document.querySelectorAll(".animate").forEach((el) => {
-  observer.observe(el);
+// Apply Observer to all elements with the 'animate' class
+document.querySelectorAll(".animate").forEach((element) => {
+  observer.observe(element);
 });
