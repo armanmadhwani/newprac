@@ -60,9 +60,9 @@
 
     .logo {
       position: absolute;
-      top: 20px;
+      top: 10px; /* Move logo slightly upwards */
       left: 20px;
-      width: 250px; /* 5 times the original size (50px * 5) */ 
+      width: 250px; 
     }
 
     /* Scroll animations */
@@ -98,14 +98,13 @@
       }
     }
 
-    /* Padding for first video */
+    /* Padding and movement for first video */
     .section:first-child { 
-      padding-top: 100px; /* Adjust padding as needed */ 
+      padding-top: 150px; /* Increase padding for downward movement */ 
     }
 
-    /* Shrink first video */
     .section:first-child video {
-      transform: scale(0.8); /* Adjust scale as needed */
+      transform: scale(0.8) translateY(20px); /* Add translateY for downward movement */
     }
   </style>
 </head>
