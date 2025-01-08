@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+require('dotenv').config();  // Add this line to load environment variables
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
