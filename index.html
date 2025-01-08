@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flux Media</title>
   <style>
+    /* General Styles */
     body {
       margin: 0;
       background-color: #000;
       overflow-x: hidden;
       font-family: Arial, sans-serif;
       text-align: center;
+      color: #fff;
     }
 
     .section {
@@ -20,19 +22,16 @@
       height: 100vh;
       scroll-snap-align: center;
       position: relative;
-      margin: 0 auto;
     }
 
     .video-container, .image-container {
       width: 80%;
       max-width: 1280px;
-      height: auto;
     }
 
     .video-container video,
     .image-container img {
       width: 100%;
-      height: auto;
       border-radius: 10px;
     }
 
@@ -49,7 +48,6 @@
       aspect-ratio: 9 / 16;
       overflow: hidden;
       border-radius: 10px;
-      text-align: center;
     }
 
     .grid-item video {
@@ -60,59 +58,34 @@
 
     .logo {
       position: absolute;
-      top: -27px;
-      left: 12px;
+      top: 20px;
+      left: 20px;
       width: 145px;
     }
 
-    /* Scroll animations */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 1.2s ease, transform 1.2s ease;
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
     }
 
-    .fade-in.active {
-      opacity: 1;
-      transform: translateY(0);
+    .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      text-align: left;
+      color: #000;
     }
-
-    /* Book Meeting Section */
-    .book-meeting {
-      background-color: #222;
-      color: #fff;
-      padding: 50px 0;
-      text-align: center;
-    }
-
-   .modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  justify-content: center;
-  align-items: center;
-  z-index: 100; /* Ensure the modal is always on top */
-  pointer-events: none; /* Prevent blocking interactions */
-}
-
-.modal.active {
-  display: flex;
-  pointer-events: auto; /* Allow interactions when modal is active */
-}
-
-.modal-content {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  width: 90%;
-  max-width: 400px;
-  text-align: left;
-}
-
 
     .modal-content h3 {
       margin-top: 0;
@@ -151,41 +124,25 @@
         width: 100%;
       }
     }
-
-    .section:first-child {
-      padding-top: 150px;
-    }
-
-    .section:first-child video {
-      transform: translateY(150px) scale(0.7);
-      transform-origin: top;
-    }
-
-    .section:nth-child(2) {
-      margin-top: 60px;
-    }
-
-    .section:nth-child(3) {
-      margin-top: -20px;
-    }
   </style>
 </head>
 <body>
   <img src="logo.png" alt="Flux Media Logo" class="logo">
 
-  <section class="section video-container fade-in">
-    <video src="intro1.mp4" autoplay muted loop playsinline style="transform: translateY(10px) scale(0.7); transform-origin: top;"></video>
+  <!-- Sections -->
+  <section class="section video-container">
+    <video src="intro1.mp4" autoplay muted loop playsinline></video>
   </section>
 
-  <section class="section image-container fade-in">
+  <section class="section image-container">
     <img src="Flex Media.png" alt="Portfolio Image">
   </section>
 
-  <section class="section video-container fade-in">
+  <section class="section video-container">
     <video src="compilated.mp4" controls muted loop playsinline></video>
   </section>
 
-  <section class="section grid-container fade-in">
+  <section class="section grid-container">
     <div class="grid-item"><video src="your-video-1.mp4" autoplay muted loop playsinline></video></div>
     <div class="grid-item"><video src="your-video-2.mp4" autoplay muted loop playsinline></video></div>
     <div class="grid-item"><video src="your-video-3.mp4" autoplay muted loop playsinline></video></div>
@@ -198,6 +155,7 @@
     <button id="contact-btn">Contact Us</button>
   </section>
 
+  <!-- Modal -->
   <div class="modal" id="booking-modal">
     <div class="modal-content">
       <h3>Book a Meeting</h3>
@@ -210,9 +168,10 @@
     </div>
   </div>
 
+  <!-- JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
-    emailjs.init('s7byDIwtBWXaCMHBq');
+    emailjs.init('YOUR_PUBLIC_KEY'); // Replace with your actual public key from EmailJS
 
     const contactBtn = document.getElementById('contact-btn');
     const modal = document.getElementById('booking-modal');
@@ -249,7 +208,7 @@
       }
 
       const [hours, minutes] = time.split(':');
-      if (hours < 10 || hours > 18 || (hours == 18 && minutes > 0)) {
+      if (hours < 10 || (hours == 18 && minutes > 0) || hours > 18) {
         alert('Meetings can only be booked between 10:00 AM and 6:00 PM.');
         return;
       }
@@ -263,7 +222,7 @@
       }).then(() => {
         alert('Meeting request sent successfully!');
         modal.style.display = 'none';
-      }).catch((error) => {
+      }).catch(() => {
         alert('Failed to send meeting request. Please try again later.');
       });
     });
