@@ -247,7 +247,12 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
   <script>
+    // EmailJS configuration
+    emailjs.init('s7byDIwtBWXaCMHBq'); // Replace with your actual User ID
+
     // Get the modal
     var modal = document.getElementById("bookingModal");
 
@@ -314,30 +319,19 @@
         return;
       }
 
-      // Send form data to the server
-      fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          client_name: client_name,
-          client_email: client_email,
-          meeting_date: meeting_date.toDateString(),
-          meeting_time: meeting_time,
-          message: message
-        })
+      // Send the email using EmailJS
+      emailjs.send('service_2pp0dlj', 'template_c3t5kwf', {
+        client_name: client_name,
+        client_email: client_email,
+        meeting_date: meeting_date.toDateString(),
+        meeting_time: meeting_time,
+        message: message
       })
       .then(function(response) {
-        if (response.ok) {
-          alert('Meeting booked successfully!');
-          modal.style.display = "none";
-        } else {
-          alert('Failed to book the meeting.');
-        }
-      })
-      .catch(function(error) {
-        alert('Error: ' + error.message);
+        alert('Meeting booked successfully!');
+        modal.style.display = "none";
+      }, function(error) {
+        alert('Failed to book the meeting. Error:', error);
       });
     });
 
