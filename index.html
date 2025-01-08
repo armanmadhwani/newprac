@@ -1,12 +1,4 @@
 <!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-
-  <meta charset="UTF-8">
-
-  <meta name="viewport" content="width=device-width, initial-scale<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -116,7 +108,8 @@
       max-width: 600px;
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
       animation-name: animatetop;
-      animation-duration: 0.4s
+      animation-duration: 0.4s;
+      border-radius: 10px;
     }
 
     @keyframes animatetop {
@@ -148,6 +141,8 @@
       padding: 8px;
       margin-top: 5px;
       box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
 
     form button {
@@ -157,6 +152,7 @@
       color: white;
       border: none;
       cursor: pointer;
+      border-radius: 5px;
     }
 
     form button:hover {
@@ -255,7 +251,7 @@
 
   <script>
     // EmailJS configuration
-    emailjs.init('YOUR_USER_ID'); // Replace with your actual User ID
+    emailjs.init('s7byDIwtBWXaCMHBq'); // Replace with your actual User ID
 
     // Get the modal
     var modal = document.getElementById("bookingModal");
@@ -293,6 +289,13 @@
       var bookingTime = document.getElementById("bookingTime").value;
       var message = document.getElementById("message").value;
 
+      var today = new Date();
+      today.setHours(0, 0, 0, 0);
+      if (bookingDate < today) {
+        alert("Bookings cannot be made in the past. Please choose another date.");
+        return;
+      }
+      
       // Check if the selected date is a Sunday
       if (bookingDate.getDay() === 0) {
         alert("Bookings cannot be made on Sundays. Please choose another day.");
@@ -306,8 +309,18 @@
         return;
       }
 
+      // Check if the time is at least 3 hours in the future from now
+      var currentHours = new Date().getHours();
+      var currentMinutes = new Date().getMinutes();
+      var bookingTimeInMinutes = (bookingHour * 60) + parseInt(bookingTime.split(":")[1]);
+      var currentTimeInMinutes = (currentHours * 60) + currentMinutes;
+      if (bookingDate.toDateString() === today.toDateString() && (bookingTimeInMinutes - currentTimeInMinutes < 180)) {
+        alert("Bookings must be made at least 3 hours in advance. Please choose a different time.");
+        return;
+      }
+
       // Send the email using EmailJS
-      emailjs.send('your_service_id', 'your_template_id', {
+      emailjs.send('service_2pp0dlj', 'template_c3t5kwf', {
         from_name: name,
         to_name: 'Recipient Name', // Replace with recipient name
         to_email: 'recipient@email.com', // Replace with recipient email
@@ -339,355 +352,4 @@
     sections.forEach(section => observer.observe(section));
   </script>
 </body>
-</html>=1.0">
-
-  <title>Flux Media</title>
-
-  <style>
-
-    body {
-
-      margin: 0;
-
-      background-color: #000;
-
-      overflow-x: hidden;
-
-      font-family: Arial, sans-serif;
-
-      text-align: center;
-
-    }
-
-
-    .section {
-
-      display: flex;
-
-      justify-content: center;
-
-      align-items: center;
-
-      height: 100vh;
-
-      scroll-snap-align: center;
-
-      position: relative;
-
-      margin: 0 auto;
-
-    }
-
-
-    .video-container, .image-container {
-
-      width: 80%;
-
-      max-width: 1280px;
-
-      height: auto;
-
-    }
-
-
-    .video-container video,
-
-    .image-container img {
-
-      width: 100%;
-
-      height: auto;
-
-      border-radius: 10px;
-
-    }
-
-
-    .grid-container {
-
-      display: flex;
-
-      justify-content: center;
-
-      gap: 20px;
-
-      flex-wrap: wrap;
-
-      padding: 0 20px;
-
-    }
-
-
-    .grid-item {
-
-      width: calc(25% - 15px);
-
-      aspect-ratio: 9 / 16;
-
-      overflow: hidden;
-
-      border-radius: 10px;
-
-      text-align: center;
-
-    }
-
-
-    .grid-item video {
-
-      width: 100%;
-
-      height: 100%;
-
-      object-fit: cover;
-
-    }
-
-
-    .logo {
-
-      position: absolute;
-
-      top: -27px;
-
-      left: 12px;
-
-      width: 145px;
-
-    }
-
-
-    /* Scroll animations */
-
-    .fade-in {
-
-      opacity: 0;
-
-      transform: translateY(50px);
-
-      transition: opacity 1.2s ease, transform 1.2s ease;
-
-    }
-
-
-    .fade-in.active {
-
-      opacity: 1;
-
-      transform: translateY(0);
-
-    }
-
-
-    /* Book Meeting Section */
-
-    .book-meeting {
-
-      background-color: #222;
-
-      color: #fff;
-
-      padding: 50px 0;
-
-      text-align: center;
-
-    }
-
-
-    /* Responsive Design */
-
-    @media (max-width: 768px) {
-
-      .grid-item {
-
-        width: calc(50% - 15px);
-
-      }
-
-    }
-
-
-    @media (max-width: 480px) {
-
-      .grid-item {
-
-        width: 100%;
-
-      }
-
-    }
-
-
-    /* Padding and movement for first video */
-
-    .section:first-child {
-
-      padding-top: 150px;
-
-    }
-
-
-    .section:first-child video {
-
-      transform: translateY(150px) scale(0.7);
-
-      transform-origin: top;
-
-    }
-
-
-    /* Move second and third sections downwards */
-
-    .section:nth-child(2) {
-
-      margin-top: 60px;
-
-    }
-
-
-    .section:nth-child(3) {
-
-      margin-top: -20px;
-
-    }
-
-  </style>
-
-</head>
-
-<body>
-
-
-  <img src="logo.png" alt="Flux Media Logo" class="logo">
-
-
-  <section class="section video-container fade-in">
-
-    <video src="intro1.mp4" autoplay muted loop playsinline style="transform: translateY(10px) scale(0.7); transform-origin: top;"></video>
-
-  </section>
-
-
-  <section class="section image-container fade-in">
-
-    <img src="Flex Media.png" alt="Portfolio Image">
-
-  </section>
-
-
-  <section class="section video-container fade-in">
-
-    <video src="compilated.mp4" controls muted loop playsinline></video>
-
-  </section>
-
-
-  <section class="section grid-container fade-in">
-
-    <div class="grid-item"><video src="your-video-1.mp4" autoplay muted loop playsinline></video></div>
-
-    <div class="grid-item"><video src="your-video-2.mp4" autoplay muted loop playsinline></video></div>
-
-    <div class="grid-item"><video src="your-video-3.mp4" autoplay muted loop playsinline></video></div>
-
-    <div class="grid-item"><video src="your-video-4.mp4" autoplay muted loop playsinline></video></div>
-
-  </section>
-
-
-  <section class="book-meeting">
-
-    <h2>Book a Meeting</h2>
-
-    <p>Let's discuss your project and bring your vision to life.</p>
-
-    <button id="contact-btn">Contact Us</button>
-
-  </section>
-
-
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
-  <script>
-
-    // EmailJS configuration
-
-    emailjs.init('YOUR_USER_ID'); // Replace with your actual User ID
-
-
-    // Get the button element
-
-    const contactBtn = document.getElementById('contact-btn');
-
-
-    // Add event listener to the button
-
-    contactBtn.addEventListener('click', function() {
-
-      // Get form data (you can add more fields as needed)
-
-      const name = 'Your Name'; // Replace with user input
-
-      const email = 'your@email.com'; // Replace with user input
-
-      const message = 'Your Message'; // Replace with user input
-
-
-      // Send the email
-
-      emailjs.send('your_service_id', 'your_template_id', {
-
-        from_name: name,
-
-        to_name: 'Recipient Name', // Replace with recipient name
-
-        to_email: 'recipient@email.com', // Replace with recipient email
-
-        message: message
-
-      })
-
-      .then(function(response) {
-
-        alert('Email sent successfully!');
-
-      }, function(error) {
-
-        alert('Email failed to send. Error:', error);
-
-      });
-
-    });
-
-
-    // Intersection Observer for Animations
-
-    const sections = document.querySelectorAll('.fade-in');
-
-
-    const observer = new IntersectionObserver((entries) => {
-
-      entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-
-          entry.target.classList.add('active');
-
-        }
-
-      });
-
-    }, {
-
-      threshold: 0.2
-
-    });
-
-
-    sections.forEach(section => observer.observe(section));
-
-  </script>
-
-</body>
-
-</html> 
+</html>
