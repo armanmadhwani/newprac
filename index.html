@@ -60,7 +60,7 @@
 
     .logo {
       position: absolute;
-      top: 100px; /* Move logo slightly upwards */
+      top: -20px; 
       left: 20px;
       width: 250px; 
     }
@@ -100,11 +100,13 @@
 
     /* Padding and movement for first video */
     .section:first-child { 
-      padding-top: 450px; /* Increase padding for downward movement */ 
+      padding-top: 150px; /* Increase padding for downward movement */ 
     }
 
     .section:first-child video {
-      transform: scale(0.8) translateY(20px); /* Add translateY for downward movement */
+      transform: translateY(150px); /* Move the video downwards by 150px */
+      transform-origin: top; /* Ensure scaling happens from the top */
+      scale: 0.8; 
     }
   </style>
 </head>
