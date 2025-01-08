@@ -1,1 +1,12 @@
-npm install nodemailer
+{
+  "name": "newprac",
+  "version": "1.0.0",
+  "description": "A project with Node.js and Nodemailer integration",
+  "main": "index.js",
+  "scripts": {
+    "start": "node api/send-email.js"
+  },
+  "dependencies": {
+    "nodemailer": "^6.7.2"
+  }
+}
