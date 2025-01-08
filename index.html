@@ -6,7 +6,340 @@
 
   <meta charset="UTF-8">
 
+  <meta name="viewport" content="width=device-width, initial-scale<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flux Media</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      overflow-x: hidden;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    .section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      scroll-snap-align: center;
+      position: relative;
+      margin: 0 auto;
+    }
+
+    .video-container, .image-container {
+      width: 80%;
+      max-width: 1280px;
+      height: auto;
+    }
+
+    .video-container video,
+    .image-container img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .grid-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 0 20px;
+    }
+
+    .grid-item {
+      width: calc(25% - 15px);
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .grid-item video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .logo {
+      position: absolute;
+      top: -27px;
+      left: 12px;
+      width: 145px;
+    }
+
+    /* Scroll animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1.2s ease, transform 1.2s ease;
+    }
+
+    .fade-in.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Book Meeting Section */
+    .book-meeting {
+      background-color: #222;
+      color: #fff;
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0,0,0);
+      background-color: rgba(0,0,0,0.4);
+    }
+
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 600px;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      animation-name: animatetop;
+      animation-duration: 0.4s
+    }
+
+    @keyframes animatetop {
+      from {top:-300px; opacity:0}
+      to {top:0; opacity:1}
+    }
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    form label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+
+    form button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #45a049;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .grid-item {
+        width: calc(50% - 15px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .grid-item {
+        width: 100%;
+      }
+    }
+
+    /* Padding and movement for first video */
+    .section:first-child {
+      padding-top: 150px;
+    }
+
+    .section:first-child video {
+      transform: translateY(150px) scale(0.7);
+      transform-origin: top;
+    }
+
+    /* Move second and third sections downwards */
+    .section:nth-child(2) {
+      margin-top: 60px;
+    }
+
+    .section:nth-child(3) {
+      margin-top: -20px;
+    }
+  </style>
+</head>
+<body>
+
+  <img src="logo.png" alt="Flux Media Logo" class="logo">
+
+  <section class="section video-container fade-in">
+    <video src="intro1.mp4" autoplay muted loop playsinline style="transform: translateY(10px) scale(0.7); transform-origin: top;"></video>
+  </section>
+
+  <section class="section image-container fade-in">
+    <img src="Flex Media.png" alt="Portfolio Image">
+  </section>
+
+  <section class="section video-container fade-in">
+    <video src="compilated.mp4" controls muted loop playsinline></video>
+  </section>
+
+  <section class="section grid-container fade-in">
+    <div class="grid-item"><video src="your-video-1.mp4" autoplay muted loop playsinline></video></div>
+    <div class="grid-item"><video src="your-video-2.mp4" autoplay muted loop playsinline></video></div>
+    <div class="grid-item"><video src="your-video-3.mp4" autoplay muted loop playsinline></video></div>
+    <div class="grid-item"><video src="your-video-4.mp4" autoplay muted loop playsinline></video></div>
+  </section>
+
+  <section class="book-meeting">
+    <h2>Book a Meeting</h2>
+    <p>Let's discuss your project and bring your vision to life.</p>
+    <button id="contact-btn">Book a Meeting</button>
+  </section>
+
+  <!-- Modal for Booking Meeting -->
+  <div id="bookingModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Book a Meeting</h2>
+      <form id="bookingForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="bookingDate">Booking Date:</label>
+        <input type="date" id="bookingDate" name="bookingDate" required>
+
+        <label for="bookingTime">Time:</label>
+        <input type="time" id="bookingTime" name="bookingTime" min="10:00" max="18:00" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+  <script>
+    // EmailJS configuration
+    emailjs.init('YOUR_USER_ID'); // Replace with your actual User ID
+
+    // Get the modal
+    var modal = document.getElementById("bookingModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("contact-btn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+    // Form validation and submission
+    document.getElementById("bookingForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var bookingDate = new Date(document.getElementById("bookingDate").value);
+      var bookingTime = document.getElementById("bookingTime").value;
+      var message = document.getElementById("message").value;
+
+      // Check if the selected date is a Sunday
+      if (bookingDate.getDay() === 0) {
+        alert("Bookings cannot be made on Sundays. Please choose another day.");
+        return;
+      }
+
+      // Check if the time is within 10am to 6pm
+      var bookingHour = parseInt(bookingTime.split(":")[0]);
+      if (bookingHour < 10 || bookingHour >= 18) {
+        alert("Bookings can only be made between 10am and 6pm. Please choose a different time.");
+        return;
+      }
+
+      // Send the email using EmailJS
+      emailjs.send('your_service_id', 'your_template_id', {
+        from_name: name,
+        to_name: 'Recipient Name', // Replace with recipient name
+        to_email: 'recipient@email.com', // Replace with recipient email
+        message: message,
+        booking_date: bookingDate.toDateString(),
+        booking_time: bookingTime
+      })
+      .then(function(response) {
+        alert('Meeting booked successfully!');
+        modal.style.display = "none";
+      }, function(error) {
+        alert('Failed to book the meeting. Error:', error);
+      });
+    });
+
+    // Intersection Observer for Animations
+    const sections = document.querySelectorAll('.fade-in');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.2
+    });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+</body>
+</html>=1.0">
 
   <title>Flux Media</title>
 
