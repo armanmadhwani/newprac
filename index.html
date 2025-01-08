@@ -227,17 +227,17 @@
       <span class="close">&times;</span>
       <h2>Book a Meeting</h2>
       <form id="bookingForm">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+        <label for="client_name">Name:</label>
+        <input type="text" id="client_name" name="client_name" required>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <label for="client_email">Email:</label>
+        <input type="email" id="client_email" name="client_email" required>
 
-        <label for="bookingDate">Booking Date:</label>
-        <input type="date" id="bookingDate" name="bookingDate" required>
+        <label for="meeting_date">Booking Date:</label>
+        <input type="date" id="meeting_date" name="meeting_date" required>
 
-        <label for="bookingTime">Time:</label>
-        <input type="time" id="bookingTime" name="bookingTime" min="10:00" max="18:00" required>
+        <label for="meeting_time">Time:</label>
+        <input type="time" id="meeting_time" name="meeting_time" min="10:00" max="18:00" required>
 
         <label for="message">Message:</label>
         <textarea id="message" name="message" required></textarea>
@@ -283,27 +283,27 @@
     document.getElementById("bookingForm").addEventListener("submit", function(event) {
       event.preventDefault();
 
-      var name = document.getElementById("name").value;
-      var email = document.getElementById("email").value;
-      var bookingDate = new Date(document.getElementById("bookingDate").value);
-      var bookingTime = document.getElementById("bookingTime").value;
+      var client_name = document.getElementById("client_name").value;
+      var client_email = document.getElementById("client_email").value;
+      var meeting_date = new Date(document.getElementById("meeting_date").value);
+      var meeting_time = document.getElementById("meeting_time").value;
       var message = document.getElementById("message").value;
 
       var today = new Date();
       today.setHours(0, 0, 0, 0);
-      if (bookingDate < today) {
+      if (meeting_date < today) {
         alert("Bookings cannot be made in the past. Please choose another date.");
         return;
       }
       
       // Check if the selected date is a Sunday
-      if (bookingDate.getDay() === 0) {
+      if (meeting_date.getDay() === 0) {
         alert("Bookings cannot be made on Sundays. Please choose another day.");
         return;
       }
 
       // Check if the time is within 10am to 6pm
-      var bookingHour = parseInt(bookingTime.split(":")[0]);
+      var bookingHour = parseInt(meeting_time.split(":")[0]);
       if (bookingHour < 10 || bookingHour >= 18) {
         alert("Bookings can only be made between 10am and 6pm. Please choose a different time.");
         return;
@@ -312,21 +312,20 @@
       // Check if the time is at least 3 hours in the future from now
       var currentHours = new Date().getHours();
       var currentMinutes = new Date().getMinutes();
-      var bookingTimeInMinutes = (bookingHour * 60) + parseInt(bookingTime.split(":")[1]);
+      var meeting_timeInMinutes = (bookingHour * 60) + parseInt(meeting_time.split(":")[1]);
       var currentTimeInMinutes = (currentHours * 60) + currentMinutes;
-      if (bookingDate.toDateString() === today.toDateString() && (bookingTimeInMinutes - currentTimeInMinutes < 180)) {
+      if (meeting_date.toDateString() === today.toDateString() && (meeting_timeInMinutes - currentTimeInMinutes < 180)) {
         alert("Bookings must be made at least 3 hours in advance. Please choose a different time.");
         return;
       }
 
       // Send the email using EmailJS
       emailjs.send('service_2pp0dlj', 'template_c3t5kwf', {
-        from_name: name,
-        to_name: 'Recipient Name', // Replace with recipient name
-        to_email: 'recipient@email.com', // Replace with recipient email
-        message: message,
-        booking_date: bookingDate.toDateString(),
-        booking_time: bookingTime
+        client_name: client_name,
+        client_email: client_email,
+        meeting_date: meeting_date.toDateString(),
+        meeting_time: meeting_time,
+        message: message
       })
       .then(function(response) {
         alert('Meeting booked successfully!');
