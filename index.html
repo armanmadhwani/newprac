@@ -247,12 +247,7 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
   <script>
-    // EmailJS configuration
-    emailjs.init('s7byDIwtBWXaCMHBq'); // Replace with your actual User ID
-
     // Get the modal
     var modal = document.getElementById("bookingModal");
 
@@ -319,20 +314,22 @@
         return;
       }
 
-      // Send the email using EmailJS
-      emailjs.send('service_2pp0dlj', 'template_c3t5kwf', {
-        client_name: client_name,
-        client_email: client_email,
-        meeting_date: meeting_date.toDateString(),
-        meeting_time: meeting_time,
-        message: message
-      })
-      .then(function(response) {
-        alert('Meeting booked successfully!');
-        modal.style.display = "none";
-      }, function(error) {
-        alert('Failed to book the meeting. Error:', error);
-      });
+      // Create the email content
+      var emailSubject = "New Meeting Booking";
+      var emailBody = `
+        <h2>New Meeting Booking</h2>
+        <p><strong>Name:</strong> ${client_name}</p>
+        <p><strong>Email:</strong> ${client_email}</p>
+        <p><strong>Date:</strong> ${meeting_date.toDateString()}</p>
+        <p><strong>Time:</strong> ${meeting_time}</p>
+        <p><strong>Message:</strong> ${message}</p>
+      `;
+
+      // Open the user's email client to send the email
+      window.location.href = `mailto:${client_email}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+
+      // Close the modal
+      modal.style.display = "none";
     });
 
     // Intersection Observer for Animations
