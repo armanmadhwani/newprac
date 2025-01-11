@@ -203,21 +203,17 @@
       }
 
       .grid-item {
-        width: calc(50% - 10px); /* Adjust the width to fit side by side */
+        width: 100%; /* Make videos full-width on mobile */
       }
 
       .grid-item.v3, .grid-item.v4 {
-        width: calc(50% - 10px); /* Adjust the width to fit side by side */
-        max-width: 50%;
+        width: 100%; /* Make videos full-width on mobile */
+        max-width: 100%;
         max-height: auto;
       }
 
-      .video-container + .grid-container {
-        margin-top: 3px; /* Decrease distance by 150% */
-      }
-
-      .grid-container + .book-meeting {
-        margin-top: 4px; /* Decrease distance by 150% */
+      .grid-container {
+        flex-direction: column; /* Stack v3 and v4 videos vertically */
       }
     }
 
