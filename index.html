@@ -45,8 +45,8 @@
     }
 
     .grid-item {
-      width: calc(27% - 15px); /* Reduced by 10% */
-      aspect-ratio: 9 / 16;
+      width: 1440px;
+      height: 2560px;
       overflow: hidden;
       border-radius: 10px;
       text-align: center;
@@ -160,6 +160,13 @@
     }
 
     /* Responsive Design */
+    @media (max-width: 1440px) {
+      .grid-item {
+        width: 100%;
+        height: auto;
+      }
+    }
+
     @media (max-width: 768px) {
       .modal-content {
         width: 90%;
@@ -176,7 +183,8 @@
       }
 
       .grid-item {
-        width: calc(50% - 15px);
+        width: 100%;
+        height: auto;
       }
     }
 
@@ -197,6 +205,7 @@
 
       .grid-item {
         width: 100%;
+        height: auto;
       }
     }
 
