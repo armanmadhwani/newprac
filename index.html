@@ -39,19 +39,17 @@
     .grid-container {
       display: flex;
       justify-content: center;
-      align-items: center;
       gap: 20px;
       flex-wrap: wrap;
       padding: 0 20px;
     }
 
     .grid-item {
-width: 50%;
-  max-width: 280px;
-  max-height: 1280px;
-  overflow: hidden;
-  border-radius: 10px;
-  text-align: center;
+      width: calc(27% - 15px); /* Reduced by 10% */
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
+      border-radius: 10px;
+      text-align: center;
     }
 
     .grid-item video {
@@ -178,9 +176,7 @@ width: 50%;
       }
 
       .grid-item {
-        width: 100%;
-        max-width: 100%;
-        max-height: auto;
+        width: calc(50% - 15px);
       }
     }
 
@@ -201,8 +197,6 @@ width: 50%;
 
       .grid-item {
         width: 100%;
-        max-width: 100%;
-        max-height: auto;
       }
     }
 
